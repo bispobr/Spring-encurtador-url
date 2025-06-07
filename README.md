@@ -1,19 +1,25 @@
-# Encurtador de URLs
+# URL Shortener API
 
-Este repositório contém um projeto simples desenvolvido com Java Spring, com o objetivo de praticar e aplicar conceitos dessa tecnologia. Nesse projeto é implementar um serviço que permite encurtar URLs longas para torná-las mais compactas e fáceis de
-compartilhar. Seguindo os detalhes abaixo
+## Descrição
+
+Esta API REST fornece um serviço de encurtamento de URLs, convertendo URLs longas em identificadores curtos e fáceis de compartilhar. O sistema gera uma versão reduzida da URL utilizando apenas letras e números, com comprimento variável entre 5 e 10 caracteres. URLs encurtadas são armazenadas no banco de dados com um prazo de validade definido.
+
+## Tecnologias Utilizadas
+
+- **Spring Boot**: Framework para construção da API REST.
+- **Lombok (@Slf4j)**: Utilizado para geração de logs.
+- **Swagger (Springdoc OpenAPI)**: Documentação interativa da API.
+- **Spring Boot Actuator**: Exposição de métricas e endpoints de monitoramento.
+- **Integração Swagger + Actuator**: Facilita observabilidade e testes em tempo real.
+- **H2 Database**: Banco de dados em memória usado para persistência temporária durante o desenvolvimento e testes.
+
 
 ## Requisitos
 
-- O encurtador de URLs recebe uma URL longa como parâmetro inicial.
-- O encurtamento será composto por um mínimo de 05 e um máximo de 10 caracteres.
-- Apenas letras e números são permitidos no encurtamento.
-- A URL encurtada será salva no banco de dados com um prazo de validade.
-- Ao receber uma chamada para a URL encurtada `https://xxx.com/DRE856`, será realizado o redirecionamento para a
-  URL original salva no banco de dados. Caso a URL não seja encontrada no banco,  o código de
-  status `HTTP 404 (Not Found)` será retornado.
+- Java 21+
+- Maven
 
-## Instalação
+## Executando o Projeto
 
 1. Clone o repositório:
 
@@ -21,13 +27,13 @@ compartilhar. Seguindo os detalhes abaixo
 git https://github.com/bispobr/Spring-encurtador-url.git
 ```
 
-2. Instale as dependências com Maven
 
-## Como Usar
+## Como usar
 
-1. Inicie a aplicação com o Maven
-2. API está acessível através do Link http://localhost:8080
-
+1. Inicie a aplicação
+2. A API está acessível através do endereço http://localhost:8080
+3. A documentação da API está acessível através do Link http://localhost:8080/swagger-ui/index.html#/
+4. O endpoint de saúde e métricas do Actuator está acessível através do Link http://localhost:8080/actuator/health
 ## API Endpoints
 
 A API contem o seguinte endpoint :
@@ -40,9 +46,12 @@ Content-Type: application/json
   "url": "https://www.teste.net/"
 }
 ```
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `url` | `String` | **Obrigatório**. A url a ser encurtado 
 
 ```http request
-GET /url/XZYWZ - Retorna a URL original especificada na requisição.
+GET /url/{encurtamento} - Retorna a URL original especificada na requisição.
 
 ```
 
