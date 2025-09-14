@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 public class Url {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String urlLonga;
     private String urlCurta;
     private LocalDateTime dataExpiracao;
